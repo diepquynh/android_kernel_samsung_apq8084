@@ -859,6 +859,8 @@ static struct device_attribute ice40_attrs[] = {
 			irda_test_show, irda_test_store)
 };
 
+/* unused */
+#if 0
 static int ice40_open(struct inode *inode, struct file *file)
 {
 	int err = 0;
@@ -878,14 +880,13 @@ static int ice40_close(struct inode *inode, struct file *file)
 	return 0;
 }
 
-
-
 static const struct file_operations ice40_fops = {
 	.owner          = THIS_MODULE,
 	.open           = ice40_open,
 	.release        = ice40_close,
 
 };
+#endif
 
 static int irda_ice40_probe(struct i2c_client *client,
 		const struct i2c_device_id *id)

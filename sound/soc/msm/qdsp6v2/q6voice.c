@@ -5454,7 +5454,8 @@ int voice_sec_set_dha_data(uint32_t session_id, short mode,
 
 	if (v->voc_state == VOC_RUN)
 		ret = voice_send_dha_data(v);
-		mutex_unlock(&v->lock);
+
+	mutex_unlock(&v->lock);
 
 	return ret;
 

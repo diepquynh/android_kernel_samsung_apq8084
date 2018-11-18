@@ -205,13 +205,13 @@ void msm_isp_process_stats_irq(struct vfe_device *vfe_dev,
 			if (!(stats_comp_mask & (1 << j)))
 				continue;
 
-				atomic_stats_mask = atomic_read(
-					&vfe_dev->stats_data.stats_comp_mask[j]);
+			atomic_stats_mask = atomic_read(
+				&vfe_dev->stats_data.stats_comp_mask[j]);
 
-				rc = msm_isp_stats_configure(vfe_dev, atomic_stats_mask,ts);
-				if (rc < 0) {
-					pr_err("%s:%d failed comp stats %d rc %d\n",
-						__func__, __LINE__, j, rc);
+			rc = msm_isp_stats_configure(vfe_dev, atomic_stats_mask,ts);
+			if (rc < 0) {
+				pr_err("%s:%d failed comp stats %d rc %d\n",
+					__func__, __LINE__, j, rc);
 			}
 		}
 	}

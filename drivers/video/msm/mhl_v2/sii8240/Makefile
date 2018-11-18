@@ -3,4 +3,5 @@
 # Copyright (c) 2013 Samsung Electronics Co., Ltd.
 #		http://www.samsung.com/
 
+CFLAGS_sii8240.o := -Wno-switch-bool
 obj-$(CONFIG_SEC_MHL_SII8240) += sii8240.o sii8240_platform.o \

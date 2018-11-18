@@ -2,6 +2,9 @@
 # USB peripheral controller drivers
 #
 ccflags-$(CONFIG_USB_GADGET_DEBUG) := -DDEBUG
+ccflags-y += \
+	-Wno-misleading-indentation \
+	-Wno-unused-const-variable
 
 obj-$(CONFIG_USB_GADGET)	+= udc-core.o
 obj-$(CONFIG_USB_LIBCOMPOSITE)	+= libcomposite.o

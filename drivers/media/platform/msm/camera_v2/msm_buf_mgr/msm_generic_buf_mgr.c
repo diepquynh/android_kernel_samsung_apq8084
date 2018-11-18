@@ -156,9 +156,12 @@ static const struct v4l2_subdev_ops msm_buf_mngr_subdev_ops = {
 	.core = &msm_buf_mngr_subdev_core_ops,
 };
 
+/* unused */
+#if 0
 static const struct of_device_id msm_buf_mngr_dt_match[] = {
 	{.compatible = "qcom,msm_buf_mngr"},
 };
+#endif
 
 static int __init msm_buf_mngr_init(void)
 {

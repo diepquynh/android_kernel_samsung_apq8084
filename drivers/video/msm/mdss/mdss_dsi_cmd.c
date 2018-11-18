@@ -92,7 +92,7 @@ int mdss_dsi_buf_alloc(struct dsi_buf *dp, int size)
 	off &= (SZ_4K - 1);
 	if (off)
 		off = SZ_4K - off;
-		dp->start += off;
+	dp->start += off;
 	}
 
 	dp->end = dp->start + size;

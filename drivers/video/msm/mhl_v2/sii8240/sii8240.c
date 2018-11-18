@@ -5118,6 +5118,9 @@ static int /*__devexit*/ sii8240_cbus_remove(struct i2c_client *client)
 }
 #endif
 
+/* unused */
+/* What do these defs actually do? :/ */
+#if 0
 static const struct i2c_device_id sii8240_tmds_id[] = {
 	{"sii8240_tmds", 0},
 	{}
@@ -5134,10 +5137,12 @@ static const struct i2c_device_id sii8240_tpi_id[] = {
 	{"sii8240_tpi", 0},
 	{}
 };
+
 static const struct i2c_device_id sii8240_cbus_id[] = {
 	{"sii8240_cbus", 0},
 	{}
 };
+#endif
 
 MODULE_DEVICE_TABLE(i2c, sii8240_tmds_id);
 MODULE_DEVICE_TABLE(i2c, sii8240_hdmi_id);

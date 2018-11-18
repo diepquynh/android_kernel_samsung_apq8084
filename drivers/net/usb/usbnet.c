@@ -86,7 +86,8 @@ ktime_t skbs, skbe;
 // randomly generated ethernet address
 static u8	node_id [ETH_ALEN];
 
-static const char driver_name [] = "usbnet";
+/* unused */
+//static const char driver_name [] = "usbnet";
 
 struct workqueue_struct	*usbnet_wq;
 
