@@ -1,0 +1,49 @@
+on boot
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2265600
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 2265600
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2265600
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 2265600
+
+on property:dev.bootcomplete=1
+    # intelliactive tunables
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "intelliactive"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "intelliactive"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "intelliactive"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "intelliactive"
+    write /sys/devices/system/cpu/cpufreq/intelliactive/above_hispeed_delay "20000 1497600:10000 2265600:1000"
+    write /sys/devices/system/cpu/cpufreq/intelliactive/go_hispeed_load 99
+    write /sys/devices/system/cpu/cpufreq/intelliactive/boostpulse_duration 1000000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/hispeed_freq 1190400
+    write /sys/devices/system/cpu/cpufreq/intelliactive/io_is_busy 1
+    write /sys/devices/system/cpu/cpufreq/intelliactive/target_loads "85 1497600:90 1728000:95 2265600:98"
+    write /sys/devices/system/cpu/cpufreq/intelliactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/sampling_down_factor 100000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/timer_rate 30000
+
+    # intelli_plug tunables
+    write /sys/module/intelli_plug/parameters/intelli_plug_active 1
+    write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 1000
+    write /sys/module/intelli_plug/parameters/touch_boost_active 0
+
+    # Set minimum readahead to prevent performance overhead
+    write /sys/block/mmcblk0/queue/read_ahead_kb 128
+    write /sys/block/mmcblk1/queue/read_ahead_kb 128
+
+    # Set RZ's minimum freq on boot completion to prevent conflicts with
+    # default ramdisk values
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 300000
+
+    # In case the above doesn't work
+    write /sys/block/mmcblk0/queue/scheduler row
+    # Set separated iosched for SD card
+    write /sys/block/mmcblk1/queue/scheduler row
+
+    write /sys/block/mmcblk0/queue/rq_affinity 0
+    write /sys/block/mmcblk1/queue/rq_affinity 0
+
+    # Since we use kernel-space hotplug driver, we don't need mpdecision
+    # now, so forcibly stop it (in case it's been started somewhere else)
+    stop mpdecision

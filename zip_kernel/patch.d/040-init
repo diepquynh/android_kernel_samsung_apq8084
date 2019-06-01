@@ -12,10 +12,12 @@ chmod 755 /system/etc/init.d;
 # Copy busybox into system
 cp -f system/bin/busybox /system/bin/busybox;
 cp -f system/etc/init.d/* /system/etc/init.d/;
+cp -f system/etc/init/* /system/etc/init/;
 
 # Change permissions
 chmod 755 /system/bin/busybox;
 chmod -R 755 /system/etc/init.d;
+chmod -R 644 /system/etc/init;
 
 print "Done!";
 exit 0;
