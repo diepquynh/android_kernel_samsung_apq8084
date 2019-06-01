@@ -52,6 +52,9 @@ for i in $(busybox seq 0 $(($num_cpu - 1))); do
 	echo "Adding zram$i";
 	cat /sys/class/zram-control/hot_add;
 	echo ${mem}K > /sys/block/zram$i/disksize;
+
+	# One second gap is needed for the zram device to be created. Idk why
+	sleep 1;
 	mkswap /dev/block/zram$i;
 	swapon -p 05 /dev/block/zram$i;
 done;
