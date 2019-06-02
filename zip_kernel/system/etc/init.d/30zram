@@ -11,7 +11,7 @@ echo "lz4" > /sys/module/zswap/parameters/compressor;
 echo "1" > /sys/module/zswap/parameters/enabled;
 
 # Set maximum swappiness
-echo 60 > /proc/sys/vm/swappiness;
+echo 160 > /proc/sys/vm/swappiness;
 
 # Set page-cluster to lowest to maximize performance
 echo 0 > /proc/sys/vm/page-cluster;
