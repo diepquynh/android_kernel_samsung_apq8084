@@ -590,6 +590,13 @@ static void get_krait_bin_format_b(struct platform_device *pdev,
 
 	dev_info(&pdev->dev, "PVS version: %d\n", *pvs_ver);
 
+	*speed = 1;
+	*pvs = 13;
+	*pvs_ver = 0;
+	dev_info(&pdev->dev, "OC speed bin: %d\n", *speed);
+	dev_info(&pdev->dev, "New PVS bin: %d\n", *pvs);
+	dev_info(&pdev->dev, "New PVS version: %d\n", *pvs_ver);
+
 	devm_iounmap(&pdev->dev, base);
 }
 
